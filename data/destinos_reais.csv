@@ -1,0 +1,21 @@
+id,nome,tipo,municipio,latitude,longitude,telefone,horario
+1,Hospital Estadual Dr. Jayme Santos Neves,Hospital Geral,Serra,-20.1784,-40.2452,(27) 3636-4500,24h
+2,Hospital Infantil Nossa Senhora da Gloria,Hospital Pediatrico,Vitoria,-20.3012,-40.3125,(27) 3636-7500,24h
+3,Unidade Mista de Saude Santa Leopoldina,Pronto Atendimento,Santa Leopoldina,-20.1008,-40.5283,(27) 3255-1234,24h
+4,Posto de Saude Rural Barra de Mangarai,Posto de Saude,Santa Leopoldina,-20.1450,-40.4890,(27) 3255-5678,07h as 17h
+5,Farmacia Popular Centro de Vitoria,Farmacia Popular,Vitoria,-20.3188,-40.3375,(27) 3132-2200,08h as 18h
+6,UPA 24h Carapina,Unidade de Pronto Atendimento,Serra,-20.2241,-40.2715,(27) 3328-9100,24h
+7,Hospital Estadual de Urgencia e Emergencia (HEUE),Hospital de Trauma,Vitoria,-20.3145,-40.3250,(27) 3636-6000,24h
+8,Posto de Saude Rural Holanda,Posto Rural,Santa Leopoldina,-20.0820,-40.5610,(27) 3255-9012,07h as 16h
+9,Farmacia Cidada Estadual,Farmacia de Alto Custo,Vila Velha,-20.3478,-40.2985,(27) 3636-2300,08h as 17h
+10,Hospital Evangélico de Vila Velha,Hospital Geral,Vila Velha,-20.3459,-40.3434,(27) 2121-3700,24h
+11,Hospital Estadual Antonio Bezerra de Faria,Hospital de Trauma,Vila Velha,-20.3542,-40.2941,(27) 3636-3100,24h
+12,Hospital Santa Rita de Cassia,Hospital Oncologico,Vitoria,-20.3082,-40.3090,(27) 3334-8000,24h
+13,Pronto Atendimento de Campo Grande,Pronto Atendimento,Cariacica,-20.3578,-40.3955,(27) 3346-6100,24h
+14,Hospital Estadual de Atencao Clinica (HEAC),Hospital Especializado,Cariacica,-20.3705,-40.3850,(27) 3636-2800,24h
+15,UPA 24h Serra Sede,Unidade de Pronto Atendimento,Serra,-20.1265,-40.3088,(27) 3291-5300,24h
+16,Maternidade Municipal de Carapina,Maternidade,Serra,-20.2195,-40.2680,(27) 3328-3400,24h
+17,UPA 24h Guarapari,Unidade de Pronto Atendimento,Guarapari,-20.6650,-40.5120,(27) 3361-8200,24h
+18,Hospital Francisco de Assis (HFA),Hospital Geral,Guarapari,-20.6720,-40.5050,(27) 3261-2100,24h
+19,Pronto Atendimento de Viana,Pronto Atendimento,Viana,-20.3890,-40.4980,(27) 3255-1500,24h
+20,Hospital e Maternidade Dr. Arthur Gerhardt,Hospital Geral,Domingos Martins,-20.3620,-40.6610,(27) 3268-1200,24h

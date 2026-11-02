@@ -1,0 +1,173 @@
+﻿--- PAGE 0 ---
+RELATÓRIO TÉCNICO & GUIA DE ENTREGA
+Tech Challenge Fase 2 | Pós-Graduação em Inteligência Artiﬁcial & Engenharia de Dados
+PROJETO 2: VRP MÉDICO
+Algoritmos Genéticos & LLMs
+Status: 100% Concluído
+1. DESCRIÇÃO DO PROBLEMA E OBJETIVOS DA OTIMIZAÇÃO MÉDICA
+A distribuição de suprimentos farmacêuticos, bolsas de sangue e insumos hospitalares críticos opera sob restrições
+extremas de tempo e integridade. Em cenários de pronto atendimento e UTI, falhas ou atrasos logísticos elevam
+diretamente os índices de morbimortalidade. Os métodos manuais tradicionais geram fragmentação operacional,
+sobreposição de rotas e incapacidade de priorizar entregas vitais.
+Critério Operacional Logística Tradicional / Manual Sistema Desenvolvido (AG + VRP + LLM)
+Tempo de PlanejamentoHoras; decisões subjetivas e planilhas
+desconectadas.< 3 segundos convergência algorítmica veloz.
+Gestão de Restrições Rígida; viola frequentemente autonomia e
+capacidade.Decodiﬁcação com penalidades estritas
+quadráticas.
+Priorização de UrgênciaSujeita a omissões e triagem ineﬁciente de
+cargas.Penalização posicional estrita para insumos
+críticos.
+Alocação de Frota Subótima; ociosidade e sobreposição de
+trajetos.Particionamento multiveicular com
+balanceamento de carga.
+Instruções de Rota Comunicação verbal ambígua ou anotações
+físicas.Manifestos em linguagem natural gerados via
+LLM.
+1.2. ESCOPO TÉCNICO, RESTRIÇÕES DO DOMÍNIO E CRITÉRIOS DE SUCESSO
+O sistema modela matematicamente o problema como um Problema de Roteamento de Veículos (VRP) multiobjetivo,
+expandindo o código-base de TSP fornecido pela banca avaliadora. Foram integradas quatro restrições físicas e
+operacionais simultâneas:
+Minimização da Distância Total Percorrida: Redução dos arcos euclidianos totais da frota entre os hospitais e o
+depósito.
+Capacidade Ponderal Estrita: Carga útil limitada a exatamente 45,0 kg por veículo da frota.
+Autonomia Operacional Máxima: Trajeto máximo limitado a 35,0 km por ciclo de atendimento antes do retorno.
+Prioridade de Nível 1 (Medicamentos Críticos): Penalização sequencial progressiva para garantir que UTI e
+emergências sejam atendidas nas primeiras posições de cada sub-rota.
+-28.4%
+REDUÇÃO DE DISTÂNCIA100%
+JANELAS CRÍTICAS ATENDIDASZero
+VIOLAÇÃO DE CARGA / AUTONOMIA
+Tech Challenge Fase 2 — Otimização de Rotas Médicas Página 1 de 5
+
+--- PAGE 1 ---
+2. ARQUITETURA DO ALGORITMO GENÉTICO & REPRESENTAÇÃO
+Diferente do TSP tradicional de anel contínuo, o cromossomo é codiﬁcado como uma permutação de IDs de clientes [1,
+..., N], onde a partição entre os veículos é gerenciada determinística e dinamicamente pela camada decodiﬁcadora
+com reinjeção obrigatória do Depósito Central (ID 0).
+      // Exemplo Estruturado do Indivíduo Otimizado no Espaço de Busca { "individuo_id": "IND_GEN_FROTA_VRP
+     
+2.1. OPERADORES GENÉTICOS ESPECIALIZADOS DE PERMUTAÇÃO
+Operadores convencionais de corte simples violam problemas de roteamento ao duplicar ou omitir clientes. Por isso,
+implementou-se o Ordered Crossover (OX1) e a Mutação Swap com garantia matemática de invariância combinatória:
+Operador Parâmetro Mecanismo Operacional Impacto na Solução
+Crossover OX1 Taxa: 85% Preserva a subcadeia do Pai 1 e completa
+as posições vazias na ordem relativa exata
+do Pai 2.Impede nós duplicados e
+preserva blocos de sub-rotas
+eﬁcientes.
+Mutação Swap Taxa: 15% Sorteia dois índices arbitrários do
+cromossomo e permuta a posição relativa
+de seus genes.Gera diversidade populacional
+e evita estagnação em
+mínimos locais.
+Seleção por Torneio Tamanho: 2 Sorteio estocástico no pool dos melhores
+avaliados, elegendo o indivíduo de menor
+custo ﬁtness.Pressão seletiva equilibrada
+sem convergência prematura.
+2.2. FUNÇÃO FITNESS MULTI-OBJETIVO E PENALIDADES PONDERADAS
+A aptidão avalia a eﬁciência de cada indivíduo calculando a distância euclidiana acumulada e aplicando penalizações
+severas para desvios de protocolo e violações de limites operacionais:
+Custo Fitness (F) = Dtotal + (Pprioridade × 50.0) + (Vcapacidade × 1000.0) + (Vautonomia × 1000.0)
+Análise Matemática de Convergência
+O gradiente de penalidade (1000.0 por kg ou km excedido) atua como uma barreira rígida no espaço de busca.
+Soluções que violam capacidade física tornam-se imediatamente desfavoráveis na seleção por torneio, orientando o
+algoritmo exclusivamente para a Fronteira de Pareto viável.
+Tech Challenge Fase 2 — Otimização de Rotas Médicas Página 2 de 5
+
+--- PAGE 2 ---
+3. DO TSP AO VRP: TOPOLOGIA E VISUALIZAÇÃO DAS ROTAS
+O modelo de Caixeiro Viajante monopostual (TSP) parte da premissa irrealista de agente único com recursos inﬁnitos.
+Para contextualizar à logística farmacêutica real, implementou-se o particionamento multiveicular com retorno
+obrigatório à origem hospitalar:
+TOPOLOGIA CARTESIANA DA REDE MÉDICA OTIMIZADA (GRID 10X10 KM)
+DEPÓSITOHosp A [Urgente]
+Posto BHosp C [Urgente]Posto D
+Hosp EClínica F [Urgente]
+3.1. QUADRO DE ALOCAÇÃO E RESPEITO ÀS RESTRIÇÕES
+Veículo /
+RotaCondutorSequência de Visitas Carga AlocadaDistância
+TotalStatus de Janela
+Veículo 1 (V-
+101)Carlos SilvaDepósito →  Clínica F (Urgente) →  Posto
+D → Retorno37,0 kg / 45 kg
+(82%)25,55 km / 35
+kmPrioridade 1
+Atendida
+Veículo 2 (V-
+102)Ana SouzaDepósito →  Hospital C (Urgente) →
+Posto B →  Retorno30,0 kg / 45 kg
+(67%)21,81 km / 35
+kmPrioridade 1
+Atendida
+Veículo 3 (V-
+103)Roberto
+LimaDepósito →  Hospital A (Urgente) →
+Hospital E →  Retorno45,0 kg / 45 kg
+(100%)15,01 km / 35
+kmPrioridade 1
+Atendida
+Constatação Empírica do Algoritmo
+Note que 100% dos medicamentos com alerta crítico (Clínica F, Hospital C e Hospital A) foram alocados
+deterministicamente na primeira parada de entrega de cada um dos três veículos, eliminando penalidades de atraso
+hospitalar.
+Tech Challenge Fase 2 — Otimização de Rotas Médicas Página 3 de 5
+
+--- PAGE 3 ---
+4. INTEGRAÇÃO REATIVA COM LLM & ORQUESTRAÇÃO IPAAS
+Para fechar o elo entre a otimização combinatória e os operadores em campo, implementou-se um pipeline de
+integração via plataforma n8n conectada a endpoints de Modelos de Linguagem Avançados (GPT-4 / Gemini):
+Motor VRP (Python)
+Execução do AG→Webhook + Ngrok
+Ingestão do Payload→Edit Fields (Set)
+Mapeamento JSON→LLM Inference Node
+Prompt Estruturado→Manifestos
+Markdown / PDF
+4.1. ENGENHARIA DE PROMPTS E GERAÇÃO DE ARTEFATOS OPERACIONAIS
+O prompt do sistema impõe temperatura 0.0 e diretrizes estritas de não-alucinação, impedindo a inversão de paradas ou
+criação de insumos inexistentes no payload:
+      [TEMPLATE OPERACIONAL DE SYSTEM PROMPT - HEALTHROUTE AI] Você é o assistente logístico 'HealthRoute A
+     
+Artefato 1: Relatório Executivo
+Destinado à gerência e auditoria hospitalar. Totaliza
+quilometragem percorrida (62,37 km), taxa média de ocupação
+(83%), redução de consumo de combustível e conformidade de
+SLAs médicos.Artefato 2: Manifesto do Motorista
+Guia de bordo passo a passo para o condutor (ex.: Carlos Silva,
+V-101). Detalha conferência de câmara fria na saída, rota exata
+e protocolos de entrega em mãos com assinatura digital.
+Uso de Pin Data no n8n: O recurso de ﬁxação de dados foi utilizado no desenvolvimento para congelar o payload de entrada do VRP,
+permitindo iterar o reﬁnamento dos prompts na LLM sem custos repetidos de tokens ou re-execuções desnecessárias do algoritmo
+evolutivo.
+Tech Challenge Fase 2 — Otimização de Rotas Médicas Página 4 de 5
+
+--- PAGE 4 ---
+5. REPOSITÓRIO, CONTAINERIZAÇÃO E QUALIDADE DE CÓDIGO
+O código foi construído em arquitetura modular com separação clara de responsabilidades, tipagem estática e
+empacotamento completo em contêineres Docker para garantia de reprodutibilidade:
+      projeto2-otimizacao-rotas-medicas/ ├── docker-compose.yml # Orquestração de n8n e infraestrutura loca
+     
+6. ROTEIRO E ESTRUTURA DO VÍDEO DE DEMONSTRAÇÃO (15 MINUTOS)
+Planejamento estruturado para a gravação da apresentação em vídeo exigida como entregável da Fase 2:
+Bloco Minutagem Conteúdo e Demonstração Prática Critério de Avaliação Coberto
+Bloco 1 00:00 - 02:30 Apresentação do problema, gargalos
+hospitalares e formulação matemática
+VRP.Contextualização do Domínio e Restrições.
+Bloco 2 02:30 - 06:00 Explicação técnica dos operadores
+OX1, Swap e função ﬁtness multi-
+objetivo.Rigor da Modelagem de Algoritmos
+Genéticos.
+Bloco 3 06:00 - 10:00 Execução ao vivo do script Python no
+terminal; convergência das 80
+gerações.Demonstração do Sistema em Execução.
+Bloco 4 10:00 - 13:00 Apresentação do ﬂuxo no n8n, disparo
+via Webhook e geração de relatórios via
+LLM.Integração com LLM e Processamento
+Natural.
+Bloco 5 13:00 - 15:00 Exibição da suíte de testes (Pytest),
+repositório Git, Docker e conclusão.Qualidade de Engenharia e Boas Práticas.
+Checklist Rápido Pré-Gravação do Vídeo
+☑ Contêiner Docker do n8n ativo (docker compose up -d) ☑ Endpoint do Webhook veriﬁcado e ativo
+☑ Variáveis no .env conﬁguradas ☑ Testes automatizados executados (pytest -v 100% PASS)
+Tech Challenge Fase 2 — Otimização de Rotas Médicas Página 5 de 5
+

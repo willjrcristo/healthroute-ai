@@ -1,0 +1,15 @@
+codigo,nome,categoria,peso_unitario_kg,temperatura_conservacao,nivel_urgencia,indicacao_clinica
+SORO-CROT,Soro Anticrotálico (Cascavel),Antiofídico,0.25,2°C a 8°C,ULTRA_CRITICO,Envenenamento por picada de cobra cascavel (Crotalus)
+SORO-BOTR,Soro Antibotrópico (Jararaca),Antiofídico,0.25,2°C a 8°C,ULTRA_CRITICO,Envenenamento por picada de jararaca (Bothrops)
+SORO-LAQ,Soro Antilaquético (Surucucu),Antiofídico,0.30,2°C a 8°C,ULTRA_CRITICO,Envenenamento por picada de surucucu (Lachesis)
+SORO-ELAP,Soro Antielapídico (Coral Verdadeira),Antiofídico,0.25,2°C a 8°C,ULTRA_CRITICO,Envenenamento por picada de coral verdadeira (Micrurus)
+SORO-ESCORP,Soro Antiescorpiônico,Antiaracnídico,0.20,2°C a 8°C,ULTRA_CRITICO,Envenenamento por picada de escorpião amarelo
+SANG-ONEG,Bolsas de Sangue O- Negativo (Universal),Hemocomponente,0.45,2°C a 6°C,CRITICO,Hemorragias graves e transfusão de emergência
+SANG-OPOS,Bolsas de Sangue O+ Positivo,Hemocomponente,0.45,2°C a 6°C,ALTO,Cirurgias e reposição de choque hipovolêmico
+VAC-ANTI-RAB,Vacina Antirrábica Humana,Imunobiológico,0.15,2°C a 8°C,CRITICO,Profilaxia pós-exposição a mordedura de animais
+VAC-TERMO,Vacinas Termossensíveis Múltiplas,Imunobiológico,1.20,2°C a 8°C,ALTO,Campanhas de imunização em postos de saúde
+ANEST-UTI,Anestésicos Injetáveis Críticos,Medicamento Hospitalar,0.50,15°C a 25°C,CRITICO,Sedação em UTI e procedimentos cirúrgicos urgentes
+SORO-FISIO,Soro Fisiológico 0.9% (Frascos 500ml),Solução Eletrolítica,0.55,Ambiente,REGULAR,Hidratação intravenosa e diluição
+KIT-CURATIVO,Kits de Curativo Estéril e Sutura,Material Médico,0.80,Ambiente,REGULAR,Tratamento de feridas e traumas ambulatoriais
+INSULINA-NPH,Insulina Humana NPH / Regular,Hormônio Térmico,0.20,2°C a 8°C,ALTO,Controle glicêmico em pacientes diabéticos
+ANTIBIOT-EV,Antibióticos Injetáveis Amplo Espectro,Medicamento Hospitalar,0.40,Ambiente,ALTO,Tratamento de sepse e infecções bacterianas

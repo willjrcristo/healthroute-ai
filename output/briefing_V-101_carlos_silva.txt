@@ -1,0 +1,31 @@
+===========================================================================
+📋 BRIEFING OPERACIONAL DE TRANSPORTE MÉDICO — HEALTHROUTE AI
+===========================================================================
+STATUS DO DESPACHO: 🔄 [RE-ENVIADO AO MOTORISTA em 02/11/2026 19:29:34 - Rev. 2]
+---------------------------------------------------------------------------
+🚚 DADOS DO CONDUTOR E VEÍCULO:
+   • Motorista Designado : Carlos Silva
+   • Veículo / Placa     : V-101 | Furgão (PAD-0000)
+   • Carga Total         : 35.0 kg / 45 kg (78% ocupação)
+   • Distância Prevista  : 25.0 km (~45 min de percurso estimado)
+   • Paradas Programadas : 1 entregas (1 com prioridade crítica)
+---------------------------------------------------------------------------
+🗺️ NAVEGAÇÃO GPS GOOGLE MAPS (Clique no link para iniciar no celular/painel):
+   https://maps.google.com
+---------------------------------------------------------------------------
+📦 CONFERÊNCIA DE EMBARQUE & INSUMOS (Checklist antes da saída):
+   [ ] 1. Suprimentos Médicos (0.0 kg) → Hospital A (UTI) | Temp: 2°C a 8°C (Câmara Fria) [🚨 URGENTE]
+---------------------------------------------------------------------------
+🧭 ITINERÁRIO PASSO A PASSO:
+1. 🚨 **[ALERTA DE PRIORIDADE CRÍTICA]** **Parada em Hospital A (UTI):**
+   - **Insumo:** Não especificado (0 kg)
+   - **Protocolo:** Despacho URGENTE. Entregar em mãos ao chefe de plantão com assinatura digital. Tempo máximo de espera: 5 minutos. Em caso de ausência, acionar supervisor imediatamente.
+   - **Condição:** ⚠️ Manter refrigeração até a entrega. Não expor a temperaturas acima de 8°C.
+
+---------------------------------------------------------------------------
+🛡️ PROCEDIMENTOS DE SEGURANÇA E EMERGÊNCIA:
+   1. Em caso de sinistro ou pane mecânica, ligue imediatamente para a
+      Central de Despacho Logístico: (27) 3636-8000 ou Canal VHF 4.
+   2. Emergência com vítimas ou socorro imediato: SAMU 192.
+   3. Monitore o termômetro do baú a cada parada (tolerância máx: 8°C).
+===========================================================================

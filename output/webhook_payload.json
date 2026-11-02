@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-11-02T19:16:18.199550",
+  "fonte": "HealthRoute AI — GA VRP Optimizer",
+  "algoritmo": {
+    "nome": "GA_VRP_OX1_Swap",
+    "geracoes": 80,
+    "fitness_inicial": 62.3702,
+    "fitness_final": 62.3702
+  },
+  "metricas": {
+    "distancia_total_km": 62.37,
+    "carga_total_kg": 112,
+    "ocupacao_media_pct": 83.0,
+    "num_veiculos": 3
+  },
+  "rotas": [
+    {
+      "veiculo": 1,
+      "identificador": "V-101 (Carlos Silva)",
+      "motorista": "Carlos Silva",
+      "caminho_ids": [
+        0,
+        1,
+        5,
+        0
+      ],
+      "pontos_nomes": [
+        "Depósito Central",
+        "Hospital A (UTI)",
+        "Hospital E",
+        "Depósito Central"
+      ],
+      "distancia_km": 15.01,
+      "carga_kg": 45.0,
+      "ocupacao_pct": 100.0
+    },
+    {
+      "veiculo": 2,
+      "identificador": "V-102 (Ana Souza)",
+      "motorista": "Ana Souza",
+      "caminho_ids": [
+        0,
+        3,
+        2,
+        0
+      ],
+      "pontos_nomes": [
+        "Depósito Central",
+        "Hospital C (Emergência)",
+        "Posto B",
+        "Depósito Central"
+      ],
+      "distancia_km": 21.81,
+      "carga_kg": 30.0,
+      "ocupacao_pct": 66.7
+    },
+    {
+      "veiculo": 3,
+      "identificador": "V-103 (Roberto Lima)",
+      "motorista": "Roberto Lima",
+      "caminho_ids": [
+        0,
+        6,
+        4,
+        0
+      ],
+      "pontos_nomes": [
+        "Depósito Central",
+        "Clínica F",
+        "Posto D",
+        "Depósito Central"
+      ],
+      "distancia_km": 25.55,
+      "carga_kg": 37.0,
+      "ocupacao_pct": 82.2
+    }
+  ]
+}

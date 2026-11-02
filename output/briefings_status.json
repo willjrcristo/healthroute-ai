@@ -1,0 +1,26 @@
+{
+  "V-101": {
+    "veiculo_id": "V-101",
+    "motorista": "Carlos Silva",
+    "status": "RE-ENVIADO",
+    "timestamp_envio": "02/11/2026 19:29:34",
+    "versao": 2,
+    "caminho_arquivo": "C:\\repos\\FIAP\\FASE2\\Tech-Challenge\\output\\briefing_V-101_carlos_silva.txt"
+  },
+  "V-102": {
+    "veiculo_id": "V-102",
+    "motorista": "Ana Souza",
+    "status": "ENVIADO",
+    "timestamp_envio": "02/11/2026 19:29:34",
+    "versao": 1,
+    "caminho_arquivo": "C:\\repos\\FIAP\\FASE2\\Tech-Challenge\\output\\briefing_V-102_ana_souza.txt"
+  },
+  "V-103": {
+    "veiculo_id": "V-103",
+    "motorista": "Roberto Lima",
+    "status": "PENDENTE",
+    "timestamp_envio": null,
+    "versao": 0,
+    "caminho_arquivo": null
+  }
+}

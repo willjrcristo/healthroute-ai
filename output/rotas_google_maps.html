@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthRoute AI — Rotas Médicas no Google Maps</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; height: 100vh; background: #f8fafc; }
+        #sidebar { width: 420px; height: 100vh; overflow-y: auto; padding: 20px; box-sizing: border-box; background: #f1f5f9; border-right: 1px solid #cbd5e1; }
+        #map { flex: 1; height: 100vh; }
+        .header { margin-bottom: 20px; }
+        .header h2 { margin: 0 0 5px 0; color: #0f172a; font-size: 20px; }
+        .header p { margin: 0; color: #64748b; font-size: 13px; }
+        .legend { background: white; border-radius: 8px; padding: 12px; margin-bottom: 15px; font-size: 12px; border: 1px solid #e2e8f0; }
+        .legend-item { display: flex; align-items: center; margin-bottom: 5px; }
+        .legend-circle { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <div class="header">
+            <h2>🚑 HealthRoute AI</h2>
+            <p>Navegação Geográfica & Rotas Otimizadas VRP</p>
+        </div>
+        <div class="legend">
+            <div class="legend-item"><span class="legend-circle" style="background: #FFC107;"></span> <b>Depósito / Base Central</b></div>
+            <div class="legend-item"><span class="legend-circle" style="background: #F44336;"></span> <b>Ponto Crítico (UTI / Emergência)</b></div>
+            <div class="legend-item"><span class="legend-circle" style="background: #2196F3;"></span> <b>Ponto Regular de Saúde</b></div>
+        </div>
+        <h3 style="font-size: 15px; color: #334155; margin-bottom: 12px;">🚐 Rotas por Veículo & Navegação:</h3>
+        
+        <div style="background: white; border-radius: 8px; padding: 14px; margin-bottom: 12px; border-left: 6px solid #2196F3; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <h4 style="margin: 0 0 6px 0; color: #1e293b;">V-101 (Carlos Silva)</h4>
+            <p style="margin: 2px 0; font-size: 13px; color: #475569;"><b>📏 Distância:</b> 15.0 km &nbsp;|&nbsp; <b>⚖️ Carga:</b> 45.0 kg (100%)</p>
+            <p style="margin: 4px 0 10px 0; font-size: 12px; color: #64748b; line-height: 1.4;"><b>Itinerário:</b> Depósito Central → Hospital A (UTI) → Hospital E → Depósito Central</p>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=-20.3167,-40.3083&destination=-20.3167,-40.3083&waypoints=-20.3201,-40.3375|-20.3350,-40.3950&travelmode=driving" target="_blank" style="display: inline-block; background: #2563eb; color: white; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: bold; transition: background 0.2s;">
+                🗺️ Abrir Rota no Google Maps
+            </a>
+        </div>
+        
+
+        <div style="background: white; border-radius: 8px; padding: 14px; margin-bottom: 12px; border-left: 6px solid #FF9800; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <h4 style="margin: 0 0 6px 0; color: #1e293b;">V-102 (Ana Souza)</h4>
+            <p style="margin: 2px 0; font-size: 13px; color: #475569;"><b>📏 Distância:</b> 21.8 km &nbsp;|&nbsp; <b>⚖️ Carga:</b> 30.0 kg (67%)</p>
+            <p style="margin: 4px 0 10px 0; font-size: 12px; color: #64748b; line-height: 1.4;"><b>Itinerário:</b> Depósito Central → Hospital C (Emergência) → Posto B → Depósito Central</p>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=-20.3167,-40.3083&destination=-20.3167,-40.3083&waypoints=-20.1936,-40.2458|-20.2889,-40.2981&travelmode=driving" target="_blank" style="display: inline-block; background: #2563eb; color: white; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: bold; transition: background 0.2s;">
+                🗺️ Abrir Rota no Google Maps
+            </a>
+        </div>
+        
+
+        <div style="background: white; border-radius: 8px; padding: 14px; margin-bottom: 12px; border-left: 6px solid #4CAF50; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <h4 style="margin: 0 0 6px 0; color: #1e293b;">V-103 (Roberto Lima)</h4>
+            <p style="margin: 2px 0; font-size: 13px; color: #475569;"><b>📏 Distância:</b> 25.6 km &nbsp;|&nbsp; <b>⚖️ Carga:</b> 37.0 kg (82%)</p>
+            <p style="margin: 4px 0 10px 0; font-size: 12px; color: #64748b; line-height: 1.4;"><b>Itinerário:</b> Depósito Central → Clínica F → Posto D → Depósito Central</p>
+            <a href="https://www.google.com/maps/dir/?api=1&origin=-20.3167,-40.3083&destination=-20.3167,-40.3083&waypoints=-20.1008,-40.5283|-20.3478,-40.2950&travelmode=driving" target="_blank" style="display: inline-block; background: #2563eb; color: white; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: bold; transition: background 0.2s;">
+                🗺️ Abrir Rota no Google Maps
+            </a>
+        </div>
+        
+    </div>
+    <div id="map"></div>
+
+    <script>
+        var map = L.map('map').setView([-20.271842857142854, -40.344], 11);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors | HealthRoute AI'
+        }).addTo(map);
+
+        
+        L.circleMarker([-20.3167, -40.3083], {
+            radius: 12,
+            fillColor: '#FFC107',
+            color: '#000',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).addTo(map).bindPopup('🏬 <b>Depósito Central</b><br>Base Central de Abastecimento e Frota');
+        
+
+        L.circleMarker([-20.3201, -40.3375], {
+            radius: 10,
+            fillColor: '#F44336',
+            color: '#000',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).addTo(map).bindPopup('🚨 <b>Hospital A (UTI)</b><br><b>Prioridade:</b> CRÍTICA (UTI/Emergência)<br><b>Demanda:</b> 15.0 kg');
+        
+
+        L.circleMarker([-20.2889, -40.2981], {
+            radius: 8,
+            fillColor: '#2196F3',
+            color: '#000',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).addTo(map).bindPopup('🏥 <b>Posto B</b><br><b>Prioridade:</b> Regular<br><b>Demanda:</b> 20.0 kg');
+        
+
+        L.circleMarker([-20.1936, -40.2458], {
+            radius: 10,
+            fillColor: '#F44336',
+            color: '#000',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).addTo(map).bindPopup('🚨 <b>Hospital C (Emergência)</b><br><b>Prioridade:</b> CRÍTICA (UTI/Emergência)<br><b>Demanda:</b> 10.0 kg');
+        
+
+        L.circleMarker([-20.3478, -40.295], {
+            radius: 8,
+            fillColor: '#2196F3',
+            color: '#000',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).addTo(map).bindPopup('🏥 <b>Posto D</b><br><b>Prioridade:</b> Regular<br><b>Demanda:</b> 25.0 kg');
+        
+
+        L.circleMarker([-20.335, -40.395], {
+            radius: 8,
+            fillColor: '#2196F3',
+            color: '#000',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).addTo(map).bindPopup('🏥 <b>Hospital E</b><br><b>Prioridade:</b> Regular<br><b>Demanda:</b> 30.0 kg');
+        
+
+        L.circleMarker([-20.1008, -40.5283], {
+            radius: 10,
+            fillColor: '#F44336',
+            color: '#000',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.85
+        }).addTo(map).bindPopup('🚨 <b>Clínica F</b><br><b>Prioridade:</b> CRÍTICA (UTI/Emergência)<br><b>Demanda:</b> 12.0 kg');
+        
+        
+        L.polyline([[-20.3167, -40.3083], [-20.3201, -40.3375], [-20.335, -40.395], [-20.3167, -40.3083]], {
+            color: '#2196F3',
+            weight: 4,
+            opacity: 0.85,
+            dashArray: '2, 6'
+        }).addTo(map).bindPopup('<b>V-101 (Carlos Silva)</b><br>Distância: 15.0 km<br>Carga: 45.0 kg');
+        
+
+        L.polyline([[-20.3167, -40.3083], [-20.1936, -40.2458], [-20.2889, -40.2981], [-20.3167, -40.3083]], {
+            color: '#FF9800',
+            weight: 4,
+            opacity: 0.85,
+            dashArray: '2, 6'
+        }).addTo(map).bindPopup('<b>V-102 (Ana Souza)</b><br>Distância: 21.8 km<br>Carga: 30.0 kg');
+        
+
+        L.polyline([[-20.3167, -40.3083], [-20.1008, -40.5283], [-20.3478, -40.295], [-20.3167, -40.3083]], {
+            color: '#4CAF50',
+            weight: 4,
+            opacity: 0.85,
+            dashArray: '2, 6'
+        }).addTo(map).bindPopup('<b>V-103 (Roberto Lima)</b><br>Distância: 25.6 km<br>Carga: 37.0 kg');
+        
+    </script>
+</body>
+</html>

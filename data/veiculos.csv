@@ -1,0 +1,8 @@
+id,veiculo_id,motorista,modelo,placa,capacidade_kg,autonomia_km,consumo_kml,hodometro_km
+1,V-101,Carlos Silva,Renault Kangoo Furgão Térmico [USB-SAMU],BRA-2E19,45.0,35.0,11.5,48250.0
+2,V-102,Ana Souza,Fiat Fiorino Ambulância Suporte Básico [USB-SAMU],RIO-4F32,45.0,35.0,10.8,32100.0
+3,V-103,Roberto Lima,Mercedes-Benz Sprinter 314 UTI Móvel [USA-SAMU],ESP-8H77,50.0,40.0,9.2,65400.0
+4,V-104,Marcos Oliveira,Renault Master Furgão Térmico Hospitalar [USB-SAMU],CAP-1A24,50.0,40.0,10.0,28900.0
+5,V-105,Juliana Mendes,Mercedes-Benz Sprinter 416 UTI Móvel Avançada [USA-SAMU],SAM-1920,55.0,45.0,8.8,41200.0
+6,V-106,Fernando Dias,Toyota Hilux 4x4 Resgate Rural (Zona Serrana) [VIR-SAMU],SRR-9X88,40.0,50.0,9.5,52100.0
+7,V-107,Renata Azevedo,Fiat Scudo Maxi Furgão Refrigerado [USB-SAMU],ESB-3M45,50.0,38.0,11.2,18500.0
