@@ -6,3 +6,4 @@ id,veiculo_id,motorista,modelo,placa,capacidade_kg,autonomia_km,consumo_kml,hodo
 5,V-105,Juliana Mendes,Mercedes-Benz Sprinter 416 UTI Móvel Avançada [USA-SAMU],SAM-1920,55.0,45.0,8.8,41200.0
 6,V-106,Fernando Dias,Toyota Hilux 4x4 Resgate Rural (Zona Serrana) [VIR-SAMU],SRR-9X88,40.0,50.0,9.5,52100.0
 7,V-107,Renata Azevedo,Fiat Scudo Maxi Furgão Refrigerado [USB-SAMU],ESB-3M45,50.0,38.0,11.2,18500.0
+8,V-108,Lucas Guimarães,Mercedes-Benz Sprinter UTI Móvel [USA-SAMU],SAM-1907,50.0,40.0,10.0,0.0

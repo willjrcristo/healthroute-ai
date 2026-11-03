@@ -2,8 +2,24 @@
 ## HealthRoute AI — Otimização Evolutiva de Rotas Médicas (VRP) & IA Generativa
 > **Tech Challenge — Fase 2**  
 > **Pós-Graduação em Inteligência Artificial para Engenharia de Dados — FIAP**  
-> **Status:** 100% Concluído & Integrado (47/47 Testes PASS)  
-> **Data:** Outubro / 2026
+> **Repositório GitHub:** [github.com/willjrcristo/healthroute-ai](https://github.com/willjrcristo/healthroute-ai)  
+> **Vídeo de Demonstração (Vimeo):** [vimeo.com/reviews/85747154-309e-481b-bb79-7fad42627151/videos/1243045935](https://vimeo.com/reviews/85747154-309e-481b-bb79-7fad42627151/videos/1243045935)  
+> **Status:** 100% Concluído & Integrado (50/50 Testes PASS)  
+> **Data:** Novembro / 2026
+
+---
+
+## IDENTIFICAÇÃO DOS ENTREGÁVEIS OFICIAIS
+
+Para atendimento rigoroso aos critérios de avaliação da Fase 2 do Tech Challenge (FIAP), os artefatos oficiais estão disponibilizados nos seguintes canais:
+
+1. **Repositório Git com Código-Fonte Completo e Testes Automatizados**:  
+   🔗 **GitHub:** [https://github.com/willjrcristo/healthroute-ai](https://github.com/willjrcristo/healthroute-ai)
+   - Contém código completo em Python 3.11+, infraestrutura Docker Compose, documentação interativa e suíte de 50 testes automatizados com 100% de aprovação.
+
+2. **Vídeo de Demonstração Técnica e Operacional em Execução**:  
+   🎬 **Vimeo:** [https://vimeo.com/reviews/85747154-309e-481b-bb79-7fad42627151/videos/1243045935](https://vimeo.com/reviews/85747154-309e-481b-bb79-7fad42627151/videos/1243045935)
+   - Demonstração do sistema em execução ao vivo, convergência do Algoritmo Genético no Pygame, geração de manifestos LLM, links GPS no Google Maps, comandos em linguagem natural, gestão de frotas e execução dos 50 testes unitários.
 
 ---
 
@@ -19,11 +35,13 @@ A partir de uma formulação matemática rigorosa do **Problema de Roteamento de
 O sistema expande os requisitos originais da Fase 2 ao incorporar:
 - **Visualização Gráfica Interativa em PyGame**: Mapa 2D da malha hospitalar e convergência do fitness geracional em tempo real, com comando para reabrir a qualquer momento diretamente do terminal;
 - **Integração Completa com Google Maps & Mapa Geográfico Interativo**: Geração de links diretos de navegação GPS *turn-by-turn* (`google.com/maps/dir/...`) para cada veículo e mapa web interativo (Leaflet) em `output/rotas_google_maps.html`;
+- **Inclusão Dinâmica de Destinos via Links do Google Maps**: Decodificação automática de URLs curtas e longas do Google Maps (`maps.app.goo.gl`), resolvendo redirecionamentos, extraindo o nome do hospital e decodificando coordenadas GPS geodésicas sem chaves pagas;
+- **Download e Integração de Microdados Oficiais do SAMU 192 (DATASUS)**: Script de ingestão automatizada de bases abertas do Ministério da Saúde com frotas reais (USB, USA, VIR) da Grande Vitória e Região Serrana do ES;
 - **Briefing Operacional para Motoristas com Controle de Flags e Versões**: Emissão de briefings individuais detalhados para os condutores com checklist de insumos, conferência de cadeia de frio (2°C a 8°C), links de GPS e controle do ciclo de vida do despacho (`⚪ PENDENTE` $\to$ `📱 ENVIADO` $\to$ `🔄 RE-ENVIADO`), com suporte a comandos em linguagem natural;
 - **Camada Generativa Multimodal (LLM)**: Geração de manifestos operacionais para condutores, relatórios de eficiência gerencial e motor de diagnóstico e melhorias de processo;
-- **Centro de Despacho & Gestão Dinâmica de Lotes**: Ingestão de pedidos em linguagem natural livre, importação de planilhas CSV e re-otimização instantânea do algoritmo genético;
+- **Centro de Despacho & Gestão Dinâmica de Lotes**: Ingestão de pedidos em linguagem natural livre, suporte a cenários regionais robustos com 16 hospitais simultâneos, importação de planilhas CSV e re-otimização instantânea do algoritmo genético;
 - **Protocolo de Emergência Aguda (Código Vermelho)**: Raciocínio clínico automatizado capaz de identificar acidentes agudos (ex: *picada de cascavel em zona rural*), selecionar o insumo específico (*Soro Anticrotálico*), calcular a geolocalização e acionar despacho prioritário;
-- **Parametrização Operacional em Tempo Real**: Ajuste dinâmico de coordenadas e título da Base Operacional, cadastro detalhado de furgões e ambulâncias (placa, modelo, consumo, hodômetro) e alteração de volumes solicitados.
+- **Parametrização Operacional em Tempo Real**: Ajuste dinâmico de coordenadas e título da Base Operacional, cadastro detalhado de furgões e ambulâncias (placa, modelo, consumo, hodômetro), alocação automática em linguagem natural e alteração de volumes solicitados.
 
 ---
 
@@ -289,55 +307,29 @@ tests/test_llm.py::test_gerar_mapa_html PASSED                           [ 55%]
 tests/test_llm.py::test_controlador_briefings_flags_e_reenvio PASSED     [ 57%]
 tests/test_llm.py::test_qa_status_briefings PASSED                       [ 59%]
 tests/test_llm.py::test_qa_imprimir_briefing_linguagem_natural PASSED    [ 61%]
-tests/test_llm.py::test_qa_google_maps_comando PASSED                    [ 63%]
-tests/test_llm.py::test_qa_abrir_mapa_pygame_callback PASSED             [ 65%]
-tests/test_vrp.py::test_pontos_tem_deposito PASSED                       [ 68%]
-tests/test_vrp.py::test_matriz_distancias_shape PASSED                   [ 70%]
-tests/test_vrp.py::test_matriz_distancias_diagonal_zero PASSED           [ 72%]
-tests/test_vrp.py::test_matriz_distancias_simetrica PASSED               [ 74%]
-tests/test_vrp.py::test_gerar_matriz_distancias_custom PASSED            [ 76%]
-tests/test_vrp.py::test_fitness_retorna_float_positivo PASSED            [ 78%]
-tests/test_vrp.py::test_fitness_cobre_todos_os_clientes PASSED           [ 80%]
-tests/test_vrp.py::test_crossover_ox1_sem_duplicatas PASSED              [ 82%]
-tests/test_vrp.py::test_crossover_ox1_mesmo_tamanho PASSED               [ 85%]
-tests/test_vrp.py::test_crossover_ox1_contem_todos_clientes PASSED       [ 87%]
-tests/test_vrp.py::test_mutacao_swap_mesmo_tamanho PASSED                [ 89%]
-tests/test_vrp.py::test_mutacao_swap_mesmos_genes PASSED                 [ 91%]
-tests/test_vrp.py::test_ag_retorna_todos_os_clientes PASSED              [ 93%]
-tests/test_vrp.py::test_ag_retorna_float_positivo PASSED                 [ 95%]
-tests/test_vrp.py::test_ag_retorna_historico_fitness PASSED              [ 97%]
+tests/test_llm.py::test_qa_google_maps_comando PASSED                    [ 60%]
+tests/test_llm.py::test_qa_abrir_mapa_pygame_callback PASSED             [ 62%]
+tests/test_llm.py::test_resolver_link_google_maps_e_pedido PASSED        [ 64%]
+tests/test_llm.py::test_qa_adicione_mais_um_veiculo_linguagem_natural PASSED [ 66%]
+tests/test_llm.py::test_qa_carregar_cenario_robusto PASSED               [ 68%]
+tests/test_vrp.py::test_pontos_tem_deposito PASSED                       [ 70%]
+tests/test_vrp.py::test_matriz_distancias_shape PASSED                   [ 72%]
+tests/test_vrp.py::test_matriz_distancias_diagonal_zero PASSED           [ 74%]
+tests/test_vrp.py::test_matriz_distancias_simetrica PASSED               [ 76%]
+tests/test_vrp.py::test_gerar_matriz_distancias_custom PASSED            [ 78%]
+tests/test_vrp.py::test_fitness_retorna_float_positivo PASSED            [ 80%]
+tests/test_vrp.py::test_fitness_cobre_todos_os_clientes PASSED           [ 82%]
+tests/test_vrp.py::test_crossover_ox1_sem_duplicatas PASSED              [ 84%]
+tests/test_vrp.py::test_crossover_ox1_mesmo_tamanho PASSED               [ 86%]
+tests/test_vrp.py::test_crossover_ox1_contem_todos_clientes PASSED       [ 88%]
+tests/test_vrp.py::test_mutacao_swap_mesmo_tamanho PASSED                [ 90%]
+tests/test_vrp.py::test_mutacao_swap_mesmos_genes PASSED                 [ 92%]
+tests/test_vrp.py::test_ag_retorna_todos_os_clientes PASSED              [ 94%]
+tests/test_vrp.py::test_ag_retorna_float_positivo PASSED                 [ 96%]
+tests/test_vrp.py::test_ag_retorna_historico_fitness PASSED              [ 98%]
 tests/test_vrp.py::test_ag_fitness_nao_piora PASSED                      [100%]
 
-============================= 47 passed in 1.04s ==============================
-tests/test_llm.py::test_qa_responde_distancia_total PASSED               [ 35%]
-tests/test_llm.py::test_qa_responde_veiculo_mais_carregado PASSED        [ 37%]
-tests/test_llm.py::test_qa_responde_ajuda PASSED                         [ 40%]
-tests/test_llm.py::test_qa_responde_lista_rotas PASSED                   [ 42%]
-tests/test_llm.py::test_qa_retorna_string_para_pergunta_desconhecida PASSED [ 45%]
-tests/test_llm.py::test_gerenciador_interpreta_pedido_texto PASSED       [ 47%]
-tests/test_llm.py::test_emergencia_clinica_cascavel_antiofidico PASSED   [ 50%]
-tests/test_llm.py::test_ajuste_volume_e_remocao_pedido PASSED            [ 52%]
-tests/test_llm.py::test_cadastro_veiculo_e_base PASSED                   [ 55%]
-tests/test_llm.py::test_gerenciador_importa_csv PASSED                   [ 57%]
-tests/test_llm.py::test_qa_ajuda_exibe_dados_input PASSED                [ 60%]
-tests/test_vrp.py::test_pontos_tem_deposito PASSED                       [ 62%]
-tests/test_vrp.py::test_matriz_distancias_shape PASSED                   [ 65%]
-tests/test_vrp.py::test_matriz_distancias_diagonal_zero PASSED           [ 67%]
-tests/test_vrp.py::test_matriz_distancias_simetrica PASSED               [ 70%]
-tests/test_vrp.py::test_gerar_matriz_distancias_custom PASSED            [ 72%]
-tests/test_vrp.py::test_fitness_retorna_float_positivo PASSED            [ 75%]
-tests/test_vrp.py::test_fitness_cobre_todos_os_clientes PASSED           [ 77%]
-tests/test_vrp.py::test_crossover_ox1_sem_duplicatas PASSED              [ 80%]
-tests/test_vrp.py::test_crossover_ox1_mesmo_tamanho PASSED               [ 82%]
-tests/test_vrp.py::test_crossover_ox1_contem_todos_clientes PASSED       [ 85%]
-tests/test_vrp.py::test_mutacao_swap_mesmo_tamanho PASSED                [ 87%]
-tests/test_vrp.py::test_mutacao_swap_mesmos_genes PASSED                 [ 90%]
-tests/test_vrp.py::test_ag_retorna_todos_os_clientes PASSED              [ 92%]
-tests/test_vrp.py::test_ag_retorna_float_positivo PASSED                 [ 95%]
-tests/test_vrp.py::test_ag_retorna_historico_fitness PASSED              [ 97%]
-tests/test_vrp.py::test_ag_fitness_nao_piora PASSED                      [100%]
-
-============================= 40 passed in 0.43s ==============================
+============================= 50 passed in 3.17s ==============================
 ```
 
 ### 6.2. Métricas de Convergência da Solução Padrão

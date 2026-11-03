@@ -1,7 +1,7 @@
 ===========================================================================
 📋 BRIEFING OPERACIONAL DE TRANSPORTE MÉDICO — HEALTHROUTE AI
 ===========================================================================
-STATUS DO DESPACHO: 🔄 [RE-ENVIADO AO MOTORISTA em 02/11/2026 19:29:34 - Rev. 2]
+STATUS DO DESPACHO: 🔄 [RE-ENVIADO AO MOTORISTA em 03/11/2026 20:28:09 - Rev. 2]
 ---------------------------------------------------------------------------
 🚚 DADOS DO CONDUTOR E VEÍCULO:
    • Motorista Designado : Carlos Silva

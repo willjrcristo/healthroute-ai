@@ -1,6 +1,9 @@
 # HealthRoute AI — Otimização de Rotas Médicas
 > **Tech Challenge Fase 2 — FIAP**  
-> *Algoritmo Genético VRP (Vehicle Routing Problem) + Integração com IA Generativa (LLM)*
+> *Algoritmo Genético VRP (Vehicle Routing Problem) + Integração com IA Generativa (LLM)*  
+> 🔗 **Repositório GitHub:** [https://github.com/willjrcristo/healthroute-ai](https://github.com/willjrcristo/healthroute-ai)  
+> 🎬 **Vídeo de Demonstração (Vimeo):** [https://vimeo.com/reviews/85747154-309e-481b-bb79-7fad42627151/videos/1243045935](https://vimeo.com/reviews/85747154-309e-481b-bb79-7fad42627151/videos/1243045935)  
+> 🧪 **Qualidade:** 50/50 Testes Automatizados (100% PASS) | 🐳 Docker & n8n
 
 ---
 
